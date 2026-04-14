@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Horloge</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<button class="toggle" id="toggleBtn">Mode sombre</button>
+
+<div class="wrapper">
+
+  <div class="clock-wrap">
+    <svg class="face-svg" viewBox="0 0 240 240">
+      <circle class="ring-inner" cx="120" cy="120" r="118"/>
+      <circle class="ring-outer" cx="120" cy="120" r="118"/>
+      <g id="ticks"></g>
+      <g id="hour-nums"></g>
+    </svg>
+    <div class="hands">
+      <div class="hand hand-hour"   id="handH"></div>
+      <div class="hand hand-minute" id="handM"></div>
+      <div class="hand hand-second" id="handS"></div>
+      <div class="center-dot"></div>
+    </div>
+  </div>
+
+  <div class="digital">
+    <div class="time-display" id="timeDisp">00<span class="sep">:</span>00</div>
+    <div class="seconds-display" id="secDisp">00 s</div>
+  </div>
+
+  <div class="date-display" id="dateDisp"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

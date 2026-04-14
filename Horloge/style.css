@@ -1,0 +1,196 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #f2efe9;
+  --surface: #e8e4dc;
+  --text:    #1a1714;
+  --muted:   #9a9188;
+  --accent:  #c0392b;
+  --border:  rgba(0,0,0,0.08);
+  --tick:    rgba(0,0,0,0.15);
+  --hand:    #1a1714;
+}
+
+[data-theme="dark"] {
+  --bg:      #111010;
+  --surface: #1c1b1a;
+  --text:    #f0ece4;
+  --muted:   #7a7670;
+  --accent:  #e74c3c;
+  --border:  rgba(255,255,255,0.09);
+  --tick:    rgba(255,255,255,0.18);
+  --hand:    #f0ece4;
+}
+
+html, body {
+  width: 100%; height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background .6s ease, color .6s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 180px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.8rem;
+}
+
+.toggle {
+  position: fixed;
+  top: 2rem; right: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: .5rem 1rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all .3s ease;
+  z-index: 10;
+}
+.toggle:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.clock-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+}
+
+.face-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ring-outer {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  transition: stroke .6s ease;
+}
+.ring-inner {
+  fill: var(--surface);
+  transition: fill .6s ease;
+}
+
+.tick { stroke: var(--tick); transition: stroke .6s ease; }
+.tick-major { stroke: var(--muted); stroke-width: 1.5; }
+.tick-minor { stroke-width: .8; }
+
+.hour-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  fill: var(--muted);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  transition: fill .6s ease;
+}
+
+.hands {
+  position: absolute;
+  inset: 0;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 99px;
+  background: var(--hand);
+  transition: background .6s ease;
+}
+
+.hand-hour {
+  width: 3px;
+  height: 70px;
+  margin-left: -1.5px;
+}
+.hand-minute {
+  width: 2px;
+  height: 96px;
+  margin-left: -1px;
+}
+.hand-second {
+  width: 1.5px;
+  height: 100px;
+  margin-left: -.75px;
+  background: var(--accent) !important;
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  z-index: 2;
+}
+.center-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--bg);
+  transition: background .6s ease;
+}
+
+.digital { text-align: center; }
+
+.time-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 5rem;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.time-display .sep {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.seconds-display {
+  font-size: .7rem;
+  color: var(--muted);
+  letter-spacing: .2em;
+  margin-top: .4rem;
+}
+
+.date-display {
+  font-size: .62rem;
+  color: var(--muted);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
