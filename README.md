@@ -12,8 +12,8 @@
 <br/>
 
 <p align="center">
-  <img src="screenshot.png" width="45%" />
-  <img src="screenshot.png" width="45%" />
+  <img src="screenshot1.png" width="45%" />
+  <img src="screenshot2.png" width="45%" />
 </p>
 
 </div>
