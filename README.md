@@ -11,7 +11,10 @@
 
 <br/>
 
-![screenshot](screenshot.png)
+<p align="center">
+  <img src="screenshot.png" width="45%" />
+  <img src="screenshot.png" width="45%" />
+</p>
 
 </div>
 
